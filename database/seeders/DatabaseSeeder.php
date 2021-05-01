@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
+use Domain\Ride\Factories\RideFactory;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
+class DatabaseSeeder extends Seeder {
+
     /**
      * Seed the application's database.
      *
      * @return void
      */
-    public function run()
-    {
-        // \App\Models\User::factory(10)->create();
+    public function run(): void {
+        RideFactory::times(10)->create();
     }
 }
