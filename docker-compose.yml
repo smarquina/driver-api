@@ -20,7 +20,6 @@ services:
         depends_on:
             - mysql
             - redis
-            - selenium
     mysql:
         image: 'mysql:8.0'
         ports:
@@ -62,12 +61,6 @@ services:
             - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
         networks:
             - sail
-    selenium:
-       image: 'selenium/standalone-chrome'
-       volumes:
-            - '/dev/shm:/dev/shm'
-       networks:
-           - sail
 networks:
     sail:
         driver: bridge
