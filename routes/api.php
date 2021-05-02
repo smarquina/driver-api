@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+/** @var \Dingo\Api\Routing\Router $api */
+$api = app('Dingo\Api\Routing\Router');
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+$api->version('v1', ['namespace' => 'App', 'middleware' => ['api']], function ($api) {
+    /** @var Dingo\Api\Routing\Router $api */
+
+    // Public Routes
+    $api->group(array('prefix' => 'rides', 'as' => 'ride', 'namespace' => 'Ride\Application\Controllers'), function ($api) {
+        $api->get('list', 'RideController@list')->name('list');
+        $api->get('list/search/{term}', 'RideController@search')->name('search');
+
+        $api->post('ride', 'RideController@store')->name('store');
+
+    });
+
 });

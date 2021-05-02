@@ -23,8 +23,8 @@ class RideFactory extends Factory {
      */
     public function definition(): array {
         return [
-            'uuid'                => $this->faker->uuid,
-            'vehicle_type'        => $this->faker->randomElement(VehicleType::getValues()),
+            'id'                   => $this->faker->uuid,
+            'vehicle_type'         => $this->faker->randomElement(VehicleType::getValues()),
             'pick_up_location_id'  => LocationFactory::new(),
             'drop_off_location_id' => LocationFactory::new(),
         ];

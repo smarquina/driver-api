@@ -4,7 +4,6 @@
 namespace App\Ride\Domain\Models;
 
 
-
 use App\Core\Domain\Models\BaseModel;
 use App\Core\Domain\Models\UuidsTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,13 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Ride extends BaseModel {
 
     use UuidsTrait;
-
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'uuid';
 
     /**
      * The database table used by the model.
@@ -39,7 +31,9 @@ class Ride extends BaseModel {
      *
      * @var array
      */
-    protected $casts = ['vehicle_type' => 'string'];
+    protected $casts = ['vehicle_type' => 'string',
+                        'id'           => 'string'];
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -58,8 +52,8 @@ class Ride extends BaseModel {
     /**
      * @return string
      */
-    public function getUuId(): string {
-        return $this->uuid;
+    public function getId(): string {
+        return $this->id;
     }
 
     /**

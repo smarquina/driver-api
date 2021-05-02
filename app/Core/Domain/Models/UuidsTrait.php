@@ -11,7 +11,7 @@ trait UuidsTrait {
     /**
      * Boot function from Laravel.
      */
-    protected static function boot() {
+    protected static function boot(): void {
         parent::boot();
         static::creating(function ($model) {
             if (empty($model->{$model->getKeyName()})) {
@@ -25,7 +25,7 @@ trait UuidsTrait {
      *
      * @return bool
      */
-    public function getIncrementing() {
+    public function getIncrementing(): bool {
         return false;
     }
 
@@ -34,7 +34,7 @@ trait UuidsTrait {
      *
      * @return string
      */
-    public function getKeyType() {
+    public function getKeyType(): string {
         return 'string';
     }
 }
