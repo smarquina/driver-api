@@ -7,6 +7,7 @@ namespace App\Ride\Domain\Models;
 
 use App\Core\Domain\Models\BaseModel;
 use App\Core\Domain\Models\UuidsTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ride extends BaseModel {
 
@@ -43,22 +44,21 @@ class Ride extends BaseModel {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function pickUp(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
-        return $this->belongsTo(Location::class, 'pickup_location_id');
+    public function pickUp(): BelongsTo {
+        return $this->belongsTo(Location::class, 'pick_up_location_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function dropOff(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
-        return $this->belongsTo(Location::class, 'dropOff_location_id');
+    public function dropOff(): BelongsTo {
+        return $this->belongsTo(Location::class, 'drop_off_location_id');
     }
 
-
     /**
-     * @return int
+     * @return string
      */
-    public function getUuId(): int {
+    public function getUuId(): string {
         return $this->uuid;
     }
 
@@ -74,7 +74,7 @@ class Ride extends BaseModel {
      * @return $this
      */
     public function setPickUp(Location $pickUp): self {
-        $this->pickUp = $pickUp;
+        $this->pick_up_location_id = $pickUp->getId();
         return $this;
     }
 
@@ -90,7 +90,7 @@ class Ride extends BaseModel {
      * @return $this
      */
     public function setDropOff(Location $dropOff): self {
-        $this->dropOff = $dropOff;
+        $this->drop_off_location_id = $dropOff->getId();
         return $this;
     }
 

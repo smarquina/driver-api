@@ -16,8 +16,8 @@ class RideCreateTable extends Migration
         Schema::create('rides', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->string('vehicle_type');
-            $table->foreignId('pickup_location_id')->constrained('locations');
-            $table->foreignId('dropOff_location_id')->constrained('locations');
+            $table->foreignId('pick_up_location_id')->constrained('locations');
+            $table->foreignId('drop_off_location_id')->constrained('locations');
             $table->timestamps();
         });
     }

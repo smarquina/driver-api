@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Domain\Ride\Factories\RideFactory;
+use App\Ride\Domain\Factories\RideFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder {

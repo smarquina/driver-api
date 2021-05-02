@@ -2,7 +2,8 @@
 
 namespace App\Ride\Domain\Factories;
 
-use App\Domain\Ride\Models\Location;
+
+use App\Ride\Domain\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LocationFactory extends Factory {
@@ -20,7 +21,7 @@ class LocationFactory extends Factory {
      */
     public function definition(): array {
         return [
-            'name'      => $this->faker->name(),
+            'name'      => $this->faker->address,
             'latitude'  => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
         ];

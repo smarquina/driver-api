@@ -2,11 +2,12 @@
 
 namespace App\Ride\Domain\Factories;
 
-use App\Domain\Ride\Models\Ride;
-use App\Domain\Ride\Models\VehicleType;
+use App\Ride\Domain\Models\Ride;
+use App\Ride\Domain\Models\VehicleType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RideFactory extends Factory {
+
     /**
      * The name of the factory's corresponding model.
      *
@@ -24,8 +25,8 @@ class RideFactory extends Factory {
         return [
             'uuid'                => $this->faker->uuid,
             'vehicle_type'        => $this->faker->randomElement(VehicleType::getValues()),
-            'pickup_location_id'  => LocationFactory::new(),
-            'dropOff_location_id' => LocationFactory::new(),
+            'pick_up_location_id'  => LocationFactory::new(),
+            'drop_off_location_id' => LocationFactory::new(),
         ];
     }
 
