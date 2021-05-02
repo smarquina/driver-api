@@ -11,6 +11,35 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller as BaseController;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @OA\OpenApi(
+ *     @OA\Info(
+ *         version="0.1",
+ *         title="Driver API",
+ *         description="Simple API for Driver rides.",
+ *         @OA\Contact(
+ *             email="sergyzen@gmail.com"
+ *         ),
+ *         @OA\License(
+ *             name="Apache 2.0",
+ *             url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *         )
+ *     ),
+ *     @OA\Server(
+ *         description="Simple API for Driver rides.",
+ *         url=""
+ *     ),
+ *     @OA\Tag(name="ride", description="List and store rides")
+ * )
+ *
+ * @SWG\Swagger(
+ *     basePath="/api",
+ *     schemes={"https"}
+ *     @SWG\Info(
+ *         version="1.0.0"
+ *     )
+ * )
+ */
 class Controller extends BaseController {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests, Helpers;
 

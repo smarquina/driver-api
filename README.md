@@ -22,6 +22,11 @@ Docker containers auto-starts in background whe the application is installed.
 To serve the app, run `make run` and app containers will start. Application is served on port 80.
 To stop containers and remove containers, networks, volumes, and images created, run `make down`
 
+## Api docs 📚
+
+Documentation is generated with Swagger. To read endpoints docs, go to `/api/documentation` in your browser.
+If you have used Docker default configuration, it will be available in [http://localhost/api/documentation](http://localhost/api/documentation).
+
 ## TODOS ⚠
 - Testing
 

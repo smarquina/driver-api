@@ -2,7 +2,7 @@
     "name": "smarquina/driver-api",
     "type": "project",
     "description": "Simple example driver api.",
-    "keywords": ["framework", "laravel"],
+    "keywords": ["API", "DDD", "laravel"],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
@@ -21,7 +21,8 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "phpunit/phpunit": "^9.3.3",
+        "darkaonline/l5-swagger": "dev-master"
     },
     "autoload": {
         "psr-4": {

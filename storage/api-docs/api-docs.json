@@ -1,0 +1,220 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Driver API",
+        "description": "Simple API for Driver rides.",
+        "contact": {
+            "email": "sergyzen@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "",
+            "description": "Simple API for Driver rides."
+        }
+    ],
+    "paths": {
+        "/api/rides/list": {
+            "get": {
+                "tags": [
+                    "ride"
+                ],
+                "summary": "list of rides",
+                "operationId": "list",
+                "parameters": [
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Pagination size per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Pagination page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of rides",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Ride"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/rides/list/search": {
+            "get": {
+                "tags": [
+                    "ride"
+                ],
+                "summary": "list of rides filtered by uuid, pick up/drop off location name",
+                "operationId": "search",
+                "parameters": [
+                    {
+                        "name": "searchTerm",
+                        "in": "path",
+                        "description": "uuid, pick up/drop off location name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Pagination size per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Pagination page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of rides",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Ride"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/rides/ride": {
+            "post": {
+                "tags": [
+                    "ride"
+                ],
+                "summary": "Store new ride with associated locations",
+                "operationId": "store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "vehicleType": {
+                                        "description": "Required. Choices: {van,sub,sedan}",
+                                        "type": "string"
+                                    },
+                                    "pickUp": {
+                                        "$ref": "#/components/schemas/Location"
+                                    },
+                                    "dropOff": {
+                                        "$ref": "#/components/schemas/Location"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Location"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Request invalid. see errors"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Location": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "nullable": false
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "latitude": {
+                        "type": "float",
+                        "nullable": true
+                    },
+                    "longitude": {
+                        "type": "float",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Ride": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "vehicleType": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "pickUp": {
+                        "$ref": "#/components/schemas/Location"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "ride",
+            "description": "List and store rides"
+        }
+    ],
+    "security": [
+        []
+    ]
+}
